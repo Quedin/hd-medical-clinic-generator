@@ -10,6 +10,12 @@ namespace Generator
     {
         static void Main(string[] args)
         {
+            Random random = new Random();
+            ResourceManager rm = new ResourceManager();
+            rm.LoadResources();
+
+            PersonGenerator pg = new PersonGenerator(rm, random);
+            pg.Generate();
         }
     }
 }
