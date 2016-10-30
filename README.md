@@ -1,0 +1,1 @@
+# hd-medical-clinic-generator
