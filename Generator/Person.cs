@@ -13,17 +13,20 @@ namespace Generator
         public int Age { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PESEL { get; set; }
+        public int Phone { get; set; }
 
 
         public override string ToString()
         {
-            string text = "Imie: " + Name + "\n";
-            text += "Nazwisko: " + Surname + "\n";
-            text += "Wiek: " + Age + "\n";
-            text += "Data urodzenia: " + DateOfBirth.ToShortDateString() + "\n";
-            text += "PESEL: " + PESEL;
+            StringBuilder text = new StringBuilder();
+            text.Append("Imie: " + Name + "\n");
+            text.Append("Nazwisko: " + Surname + "\n");
+            text.Append("Wiek: " + Age + "\n");
+            text.Append("Data urodzenia: " + DateOfBirth.ToShortDateString() + "\n");
+            text.Append("PESEL: " + PESEL + "\n");
+            text.Append("Telefon: " + Phone);
 
-            return text;
+            return text.ToString();
         }
     }
 }
