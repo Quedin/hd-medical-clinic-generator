@@ -7,25 +7,36 @@ using System.IO;
 
 namespace Generator
 {
-    class ResourceManager
+    static class ResourceManager
     {
-        private List<string> femaleNames;
-        private List<string> maleNames;
-        private List<string> surnames;
+        private static List<string> femaleNames;
+        private static List<string> maleNames;
+        private static List<string> surnames;
 
-        public List<string> FemaleNames { get { return femaleNames; } }
-        public List<string> MaleNames { get { return maleNames; } }
-        public List<string> Surnames { get { return surnames; } }
+        public static List<string> FemaleNames { get { return femaleNames; } }
+        public static List<string> MaleNames { get { return maleNames; } }
+        public static List<string> Surnames { get { return surnames; } }
+        public static List<int> Phones = new List<int>();
+        public static Dictionary<int, bool> FreeDoctorsCabinet = new Dictionary<int, bool>();
 
-        public void LoadResources()
+        static ResourceManager()
+        {
+            for (int i = 1; i <= 20; i++)
+                FreeDoctorsCabinet.Add(i, true);
+        }
+
+        // załadowanie wszystkich danych z plików
+        public static void LoadResources()
         {
             LoadMaleNames("../../resources/meskie.csv");
             LoadFemaleNames("../../resources/zenskie.csv");
             LoadSurname("../../resources/nazwiska.csv");
         }
-        public void LoadMaleNames(string path)
+
+        // załadowanie imion męskich z pliku
+        public static void LoadMaleNames(string path)
         {
-            maleNames = File.ReadLines(path).First().Split(',').ToList();
+           maleNames = File.ReadLines(path).First().Split(',').ToList();
 
             //foreach (string name in maleNames)
             //    Console.WriteLine(name);
@@ -33,7 +44,8 @@ namespace Generator
             //Console.WriteLine("Liczba imion: " + maleNames.Count());
         }
 
-        public void LoadFemaleNames(string path)
+        // załadowanie imion damskich z pliku
+        public static void LoadFemaleNames(string path)
         {
             femaleNames = File.ReadLines(path).First().Split(',').ToList();
 
@@ -43,7 +55,8 @@ namespace Generator
             //Console.WriteLine("Liczba imion: " + femaleNames.Count());
         }
 
-        public void LoadSurname(string path)
+        // załadowanie nazwisk z pliku
+        public static void LoadSurname(string path)
         {
             surnames = File.ReadLines(path).First().Split(',').ToList();
 

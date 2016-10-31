@@ -11,11 +11,16 @@ namespace Generator
         static void Main(string[] args)
         {
             Random random = new Random();
-            ResourceManager rm = new ResourceManager();
-            rm.LoadResources();
+            ResourceManager.LoadResources();
 
-            PersonGenerator pg = new PersonGenerator(rm, random);
-            pg.Generate();
+            PersonGenerator pg = new PersonGenerator(random);
+
+            List<Person> persons = new List<Person>();
+            for (int i = 0; i < 5; i++)
+                persons.Add(pg.Generate());
+
+            foreach (Person p in persons)
+                Console.WriteLine(p.ToString() + "\n");
         }
     }
 }

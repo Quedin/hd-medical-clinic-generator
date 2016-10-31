@@ -8,40 +8,53 @@ namespace Generator
 {
     class PersonGenerator
     { 
+        /* ENUM */
         private enum Gender
         {
             MALE,
             FEMALE
         }
 
-        private ResourceManager rm;
+        /* POLA */
         private Random random;
-        private DateTime startDate = new DateTime(1936, 1, 1);
-        private DateTime endDate = new DateTime(2016, 10, 1);
+        private DateTime startDate = new DateTime(1936, 1, 1);      // maksymalna data, kiedy osoba mogła się urodzić
+        private DateTime todayDate = new DateTime(2016, 10, 1);     // najwcześniejsza data
 
-        public PersonGenerator(ResourceManager rm, Random random)
+        /* KONSTRUKTOR */
+        public PersonGenerator(Random random)
         {
-            this.rm = rm;
+           // this.rm = rm;
             this.random = random;
         }
 
+        /* METODY */
+
+        // generowanie osoby
         public Person Generate()
+        {
+            return Generate(1);
+        }
+        
+        // generowanie osoby o minimalnym wieku
+        public Person Generate(int minAge)
         {
             Person person = new Person();
 
-            person.DateOfBirth = RandomDateOfBirth();
-            person.Age = endDate.Year - person.DateOfBirth.Year;
+            person.DateOfBirth = RandomDateOfBirth(20);
+            person.Age = todayDate.Year - person.DateOfBirth.Year;
             person.PESEL = RandomPesel(person.DateOfBirth);
 
             Gender gender = GetGenderFromPesel(person.PESEL);
             person.Name = RandomName(gender);
             person.Surname = RandomSurname(gender);
+            person.Phone = RandomPhone();
 
-            Console.WriteLine(person.ToString());
+          //  Console.WriteLine(person.ToString());
 
             return person;
         }
 
+        // wyciągniecie informacji o płci z peselu
         private Gender GetGenderFromPesel(string pesel)
         {
             int digit = pesel[9] - '0';
@@ -51,58 +64,73 @@ namespace Generator
                 return Gender.MALE;
         }
 
+        // losowanie imienia na podstawie płci
         private string RandomName(Gender gender)
         {
             int listSize = 0;
             int number = 0;
             if (gender == Gender.MALE)
             {
-                listSize = rm.MaleNames.Count();
+                listSize = ResourceManager.MaleNames.Count();
                 number = random.Next(0, listSize);
-                return rm.MaleNames[number];
+                return ResourceManager.MaleNames[number];
             }
             else
             {
-                listSize = rm.FemaleNames.Count();
+                listSize = ResourceManager.FemaleNames.Count();
                 number = random.Next(0, listSize);
-                return rm.FemaleNames[number];
+                return ResourceManager.FemaleNames[number];
             }
         }
 
+        // losowanie nazwiska i dopasowanie go do płci
         private string RandomSurname(Gender gender)
         {
-            int listSize = rm.Surnames.Count();
+            int listSize = ResourceManager.Surnames.Count();
             int number = random.Next(0, listSize);
             
-            return rm.Surnames[number];
+            return ResourceManager.Surnames[number];
         }
 
+        // losowanie daty urodzenia
         private DateTime RandomDateOfBirth()
         {
-            DateTime date = startDate;
-            int range = (endDate - startDate).Days;
-            return date.AddDays(random.Next(range));
+            return RandomDateOfBirth(0);
         }
 
+        // losowanie daty urodzenia z uwzględnieniem minimalnego wieku
+        private DateTime RandomDateOfBirth(int minAge)
+        {
+            DateTime minAgeDate = todayDate.AddYears(-minAge);
+            int range = (minAgeDate - startDate).Days;
+            return startDate.AddDays(random.Next(range));
+        }
+
+        // losowanie peselu na podstawie daty urodzenia
         private string RandomPesel(DateTime dateOfBirth)
         {
             StringBuilder pesel = new StringBuilder();
 
+            /* CYFRY 1-6 */
             pesel.Append(dateOfBirth.Year.ToString().Substring(2));
 
-            int monthShift = (int)((dateOfBirth.Year - 1900) / 100) * 20;
+            // wyliczenia przesunięcia miesięcy w zależności od liczby stuleci
+            int monthShift = (dateOfBirth.Year - 1900) / 100 * 20;
             pesel.Append((dateOfBirth.Month + monthShift).ToString("00"));
 
             pesel.Append(dateOfBirth.Day.ToString("00"));
 
+            /* CYFRY 7-10 - 10 to płeć */
             int maxValue = (int)Math.Pow(10, 4);
             pesel.Append(random.Next(maxValue).ToString("D4")); //ToString("D4") otrzymamy np. "1234"
             
+            /* CYFRA 11 - kontrolna */
             pesel.Append(CheckSumPesel(pesel.ToString()));
 
             return pesel.ToString();
         }
 
+        // sprawdzenie sumy kontrolnej dla peselu
         private int CheckSumPesel(string pesel)
         {
             int[] weight = new[] { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
@@ -113,6 +141,24 @@ namespace Generator
             int lastDigit = sum % 10;
 
             return lastDigit == 0 ? 0 : 10 - lastDigit;
+        }
+
+        // losowanie numeru telefonu
+        private int RandomPhone()
+        {
+            int min = 100000000;
+            int max = 999999999;
+
+            int phone = 0;
+            do
+            {
+                phone = random.Next(min, max);
+            } while (ResourceManager.Phones.Contains(phone));    // dopóki nie ma telefonu w bazie
+
+            // dodajemy telefon do bazy
+            ResourceManager.Phones.Add(phone);
+
+            return phone;
         }
     }
 }
