@@ -37,12 +37,15 @@ namespace Generator
             int numberOfDoctors_T1 = random.Next(10, 16);
             List<Doctor> doctors_T1 = dg.GenerateList_T1(numberOfDoctors_T1);
 
-            SaveDoctorToExcel(doctors_T1);
+            List<Doctor> doctors_T2 = dg.GenerateList_T2(doctors_T1);
+
+            SaveDoctorToExcel(doctors_T1, "Lekarze_T1.xls");
+            SaveDoctorToExcel(doctors_T2, "Lekarze_T2.xls");
         }
 
         
 
-        public static void SaveDoctorToExcel(List<Doctor> doctors)
+        public static void SaveDoctorToExcel(List<Doctor> doctors, string fileName)
         {
             Spreadsheet document = new Spreadsheet();
             Worksheet sheet = document.Workbook.Worksheets.Add("Lekarze");
@@ -90,12 +93,12 @@ namespace Generator
             for (int i = 0; i < data2[0].Count(); i++)
                 sheet.Columns[i].AutoFit();
 
-            if (File.Exists("Lekarze.xls"))
-                File.Delete("Lekarze.xls");
+            if (File.Exists(fileName))
+                File.Delete(fileName);
 
-            document.SaveAs("Lekarze.xls");
+            document.SaveAs(fileName);
             document.Close();
-            Process.Start("Lekarze.xls");
+            Process.Start(fileName);
         }
         
     }

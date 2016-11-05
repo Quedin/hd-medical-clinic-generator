@@ -8,6 +8,7 @@ namespace Generator
 {
     class DoctorGenerator
     {
+        #region POLA
         private Random random;
         private PersonGenerator pg;
         private DateTime startDateOfEmploy_T1 = new DateTime(1994, 1, 1);
@@ -22,13 +23,17 @@ namespace Generator
             { "doktor hab.", 34 }, // 700 - 899
             { "profesor", 50 } // 900 - 1000
         };
+        #endregion
 
+        #region KONSTRUKTOR
         public DoctorGenerator(Random random)
         {
             this.pg = new PersonGenerator(random);
             this.random = random;
         }
+        #endregion
 
+        #region POLA
         public Doctor Generate(bool T1_TIME)
         {
             string title = RandomTitle();
@@ -73,10 +78,37 @@ namespace Generator
             return doctors;
         }
 
-        public List<Doctor> GenerateList_T2(List<Doctor> list_T1, int newDoctors, int oldDissmissDoctors)
+        public List<Doctor> GenerateList_T2(List<Doctor> list_T1)
         {
-            
-            return list_T1;
+            // kopiowanie listy z punktu T1
+            List<Doctor> list_T2 = list_T1.Select(doctor => (Doctor)doctor.Clone()).ToList();
+            // policzenie lekarzy, którzy pracują
+            int working = list_T1.Where(doctor => doctor.DateOfDissmiss.Year == 1).Count();
+            // wylosowanie ilości osób do zwolnienia (min: 2; max: liczba aktualnie pracujących)
+            int forDissmiss = random.Next(2, working);
+            // wylistowanie indeksów lekarzy, którzy pracują
+            List<int> indexes = Enumerable.Range(0, list_T1.Count()).Where(i => list_T1[i].DateOfDissmiss.Year == 1).ToList();
+
+            working -= forDissmiss;
+            /* ZWALNIANIE Z PRACY */
+            do
+            {
+                // losowanie ideksu z listy indeksów do zwolnienia z pracy
+                int number = random.Next(0, indexes.Count());
+                list_T2[indexes[number]].DateOfDissmiss = RandomDateOfDissmiss(list_T2[indexes[number]].DateOfEmployment, endDateOfEmploy_T1);
+                // usunięcie indeksu zwolnionego lekarza
+                indexes.RemoveAt(number);
+                forDissmiss--;
+
+            } while (forDissmiss != 0);
+
+            /* ZATRUDNIANIE */
+            // losowanie liczby lekarzy do zatrudnienia(min: 1; max: liczba gabinetów - liczba aktualnie pracujących)
+            int forEmpoly = random.Next(1, ResourceManager.FreeDoctorsCabinet.Last().Key - working);
+            for (int i = 0; i < forEmpoly; i++)
+                list_T2.Add(Generate(false));
+
+            return list_T2;
         }
 
         private int RandomCabinet()
@@ -131,6 +163,6 @@ namespace Generator
             int range = (endDateOfEmploy - dateOfEmploy).Days;
             return dateOfEmploy.AddDays(random.Next(range));
         }
-
+        #endregion
     }
 }

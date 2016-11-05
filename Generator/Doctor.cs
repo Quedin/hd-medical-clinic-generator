@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace Generator
 {
-    class Doctor : Person
+    class Doctor : Person, ICloneable
     {
+        #region POLA
         public int Cabinet { get; set; }
         public string Title { get; set; }                   // wykształcenie
         public string Specjalizations { get; set; }
         public DateTime DateOfEmployment { get; set; }
         public DateTime DateOfDissmiss { get; set; }
+        #endregion
 
+        #region KONSTRUKTOR
+        public Doctor()
+        { }
 
         public Doctor(Person person)
         {
@@ -23,6 +28,26 @@ namespace Generator
             Age = person.Age;
             PESEL = person.PESEL;
             Phone = person.Phone;
+        }
+        #endregion
+
+        #region METODY
+        public object Clone()
+        {
+            Doctor doctor = new Doctor();
+            doctor.Name = Name;
+            doctor.Surname = Surname;
+            doctor.DateOfBirth = DateOfBirth;
+            doctor.Age = Age;
+            doctor.PESEL = PESEL;
+            doctor.Phone = Phone;
+            doctor.Cabinet = Cabinet;
+            doctor.Title = Title;
+            doctor.Specjalizations = Specjalizations;
+            doctor.DateOfEmployment = DateOfEmployment;
+            doctor.DateOfDissmiss = DateOfDissmiss;
+
+            return doctor;
         }
 
         public override string ToString()
@@ -47,10 +72,11 @@ namespace Generator
                 DateOfBirth.ToShortDateString(),Title, Specjalizations,
                 DateOfEmployment.ToShortDateString(),
                 DateOfDissmiss.Year == 1 ? "" : DateOfDissmiss.ToShortDateString()
+               
             };
-
             return data;
         }
-        
+        #endregion
+
     }
 }

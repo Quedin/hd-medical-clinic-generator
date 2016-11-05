@@ -8,14 +8,16 @@ namespace Generator
 {
     class Person
     {
+        #region POLA
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PESEL { get; set; }
         public int Phone { get; set; }
+        #endregion
 
-
+        #region METODY
         public override string ToString()
         {
             StringBuilder text = new StringBuilder();
@@ -28,5 +30,6 @@ namespace Generator
 
             return text.ToString();
         }
+        #endregion
     }
 }
