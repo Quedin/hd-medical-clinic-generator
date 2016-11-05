@@ -18,6 +18,7 @@ namespace Generator
         public static List<string> Surnames { get { return surnames; } }
         public static List<int> Phones = new List<int>();
         public static Dictionary<int, bool> FreeDoctorsCabinet = new Dictionary<int, bool>();
+        public static List<string> Specializations { get; set; }
 
         static ResourceManager()
         {
@@ -31,6 +32,7 @@ namespace Generator
             LoadMaleNames("../../resources/meskie.csv");
             LoadFemaleNames("../../resources/zenskie.csv");
             LoadSurname("../../resources/nazwiska.csv");
+            LoadDoctorSpecializations("../../resources/specjalizacje.csv");
         }
 
         // załadowanie imion męskich z pliku
@@ -64,6 +66,11 @@ namespace Generator
             //    Console.WriteLine(name);
 
                 //Console.WriteLine("Liczba nazwisk: " + surnames.Count());
+        }
+
+        public static void LoadDoctorSpecializations(string path)
+        {
+            Specializations = File.ReadLines(path).ToList();
         }
     }
 }
