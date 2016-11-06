@@ -19,6 +19,10 @@ namespace Generator
 
             PersonGenerator pg = new PersonGenerator(random);
             DoctorGenerator dg = new DoctorGenerator(random);
+            PatientsGenerator pSQLg = new PatientsGenerator(random);
+            VisitGenerator vg = new VisitGenerator(random);
+            TreatmentsGenerator tg = new TreatmentsGenerator(random);
+
 
             //List<Person> persons = new List<Person>();
             //for (int i = 0; i < 5; i++)
@@ -39,11 +43,21 @@ namespace Generator
 
             List<Doctor> doctors_T2 = dg.GenerateList_T2(doctors_T1);
 
-            SaveDoctorToExcel(doctors_T1, "Lekarze_T1.xls");
-            SaveDoctorToExcel(doctors_T2, "Lekarze_T2.xls");
+
+            /*listy sql*/
+            List<DoctorSql> doctors_sql = DoctorSqlGenerator.Generate(doctors_T2);
+            List<Patient> patients_sql = pSQLg.GenerateListOfPatients(10000);
+            List<Disease> diseases_sql = Disease.GenerateDiseases();
+            List<Drugs> drugs_sql = Drugs.MakeDrugs();
+            List<Visit> visits_sql = vg.GenerateVisits(1000, doctors_sql, patients_sql, diseases_sql);
+            List<Treatment> treatments_sql = tg.Generate(visits_sql, drugs_sql);
+            
+            
+            //SaveDoctorToExcel(doctors_T1, "Lekarze_T1.xls");
+            //SaveDoctorToExcel(doctors_T2, "Lekarze_T2.xls");
         }
 
-        
+
 
         public static void SaveDoctorToExcel(List<Doctor> doctors, string fileName)
         {

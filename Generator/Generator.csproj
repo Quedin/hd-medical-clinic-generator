@@ -48,18 +48,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Disease.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="DoctorGenerator.cs" />
+    <Compile Include="DoctorSql.cs" />
+    <Compile Include="DoctorSqlGenerator.cs" />
+    <Compile Include="Drugs.cs" />
     <Compile Include="Patient.cs" />
+    <Compile Include="PatientsGenerator.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PersonGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
+    <Compile Include="Treatment.cs" />
+    <Compile Include="TreatmentsGenerator.cs" />
+    <Compile Include="Visit.cs" />
+    <Compile Include="VisitGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="resources\choroby.csv" />
+    <None Include="resources\leki.csv" />
     <None Include="resources\meskie.csv" />
     <None Include="resources\miasta.csv" />
     <None Include="resources\nazwiska.csv" />
