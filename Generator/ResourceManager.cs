@@ -9,6 +9,7 @@ namespace Generator
 {
     static class ResourceManager
     {
+        #region POLA
         private static List<string> femaleNames;
         private static List<string> maleNames;
         private static List<string> surnames;
@@ -18,19 +19,25 @@ namespace Generator
         public static List<string> Surnames { get { return surnames; } }
         public static List<int> Phones = new List<int>();
         public static Dictionary<int, bool> FreeDoctorsCabinet = new Dictionary<int, bool>();
+        public static List<string> Specializations { get; set; }
+        #endregion
 
+        #region KONSTRUKTOR
         static ResourceManager()
         {
             for (int i = 1; i <= 20; i++)
                 FreeDoctorsCabinet.Add(i, true);
         }
+        #endregion
 
+        #region METODY
         // załadowanie wszystkich danych z plików
         public static void LoadResources()
         {
             LoadMaleNames("../../resources/meskie.csv");
             LoadFemaleNames("../../resources/zenskie.csv");
             LoadSurname("../../resources/nazwiska.csv");
+            LoadDoctorSpecializations("../../resources/specjalizacje.csv");
         }
 
         // załadowanie imion męskich z pliku
@@ -65,5 +72,11 @@ namespace Generator
 
                 //Console.WriteLine("Liczba nazwisk: " + surnames.Count());
         }
+
+        public static void LoadDoctorSpecializations(string path)
+        {
+            Specializations = File.ReadLines(path).ToList();
+        }
+        #endregion
     }
 }

@@ -15,20 +15,22 @@ namespace Generator
             FEMALE
         }
 
-        /* POLA */
+        #region POLA
         private Random random;
         private DateTime startDate = new DateTime(1936, 1, 1);      // maksymalna data, kiedy osoba mogła się urodzić
         private DateTime todayDate = new DateTime(2016, 10, 1);     // najwcześniejsza data
+        #endregion
 
-        /* KONSTRUKTOR */
+        #region KONSTRUKTOR
         public PersonGenerator(Random random)
         {
            // this.rm = rm;
             this.random = random;
         }
+        #endregion
 
-        /* METODY */
 
+        #region METODY
         // generowanie osoby
         public Person Generate()
         {
@@ -160,5 +162,6 @@ namespace Generator
 
             return phone;
         }
+        #endregion
     }
 }
