@@ -20,6 +20,9 @@ namespace Generator
         public static List<int> Phones = new List<int>();
         public static Dictionary<int, bool> FreeDoctorsCabinet = new Dictionary<int, bool>();
         public static List<string> Specializations { get; set; }
+        public static List<string> Streets { get; set; }
+        public static List<string> Diseases { get; set; }
+        public static List<string> Drugs { get; set; }
         #endregion
 
         #region KONSTRUKTOR
@@ -38,6 +41,9 @@ namespace Generator
             LoadFemaleNames("../../resources/zenskie.csv");
             LoadSurname("../../resources/nazwiska.csv");
             LoadDoctorSpecializations("../../resources/specjalizacje.csv");
+            LoadStreets("../../resources/ulice.csv");
+            LoadDiseases("../../resources/choroby.csv");
+            LoadDrugs("../../resources/leki.csv");
         }
 
         // załadowanie imion męskich z pliku
@@ -76,6 +82,21 @@ namespace Generator
         public static void LoadDoctorSpecializations(string path)
         {
             Specializations = File.ReadLines(path).ToList();
+        }
+
+
+        // załadowanie ulic z pliku
+        public static void LoadStreets(string path)
+        {
+            Streets = File.ReadLines(path).First().Split(',').ToList();
+        }
+        public static void LoadDiseases(string path)
+        {
+            Diseases = File.ReadLines(path).First().Split(',').ToList();
+        }
+        public static void LoadDrugs(string path)
+        {
+            Drugs = File.ReadLines(path).First().Split(',').ToList();
         }
         #endregion
     }
