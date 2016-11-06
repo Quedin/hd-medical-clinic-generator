@@ -23,7 +23,7 @@ namespace Generator
             VisitGenerator vg = new VisitGenerator(random);
             TreatmentsGenerator tg = new TreatmentsGenerator(random);
 
-
+            //michu zmiana
             //List<Person> persons = new List<Person>();
             //for (int i = 0; i < 5; i++)
             //    persons.Add(pg.Generate());
