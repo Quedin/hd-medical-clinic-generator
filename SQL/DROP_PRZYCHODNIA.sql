@@ -1,0 +1,6 @@
+DROP TABLE Kuracja;
+DROP TABLE Wizyta;
+DROP TABLE Lekarze;
+DROP TABLE Pacjenci;
+DROP TABLE Leki;
+DROP TABLE Choroby;
