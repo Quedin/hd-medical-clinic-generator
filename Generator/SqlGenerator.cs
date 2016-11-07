@@ -150,5 +150,22 @@ namespace Generator
             }
         }
 
+
+
+        public static void SqlUpdatePatients(string path, List<Patient> patients)
+        {
+
+            // Append text to an existing file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(path, true))
+            {
+                //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
+                foreach (var item in patients)
+                {
+                    outputFile.WriteLine("UPDATE Pacjenci SET Miasto = \'"+item.City+ "\',Ulica= \'" + item.Street+"\', KodPocztowy= \'"+item.ZipCode+"\' WHERE PESEL = "+item.PESEL+";");
+
+
+                }
+            }
+        }
     }
 }

@@ -55,7 +55,8 @@ namespace Generator
             SqlGenerator.SqlFromDoctors_T2(@"..\..\JanuszMED_T2.sql", doctors_sql_T2);
             List<Patient> patients_sql2 = pSQLg.PickFewPatients(100, patients_sql);
             List<Visit> visits_sql2 = vg.GenerateVisits(10000, doctors_sql_T2, patients_sql2, diseases_sql);
-            SqlGenerator.SqlFromPatients(@"..\..\JanuszMED_T2.sql", patients_sql2);
+
+            SqlGenerator.SqlUpdatePatients(@"..\..\JanuszMED_T2.sql", patients_sql2);         
             SqlGenerator.SqlFromVisits(@"..\..\JanuszMED_T2.sql", visits_sql2);
 
 
