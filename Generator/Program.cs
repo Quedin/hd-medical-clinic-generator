@@ -48,14 +48,14 @@ namespace Generator
             List<DoctorSql> doctors_sql = DoctorSqlGenerator.Generate(doctors_T2);
 
             /*ustawianie ilosci pacjentow TUTAJ*/
-            List<Patient> patients_sql = pSQLg.GenerateListOfPatients(10000);
+            List<Patient> patients_sql = pSQLg.GenerateListOfPatients(100);
 
 
             List<Disease> diseases_sql = Disease.GenerateDiseases();
             List<Drugs> drugs_sql = Drugs.MakeDrugs();
 
             /*ustawianie ilosci wizyt TUTAJ*/
-            List<Visit> visits_sql = vg.GenerateVisits(1000000, doctors_sql, patients_sql, diseases_sql);
+            List<Visit> visits_sql = vg.GenerateVisits(1000, doctors_sql, patients_sql, diseases_sql);
 
 
             /*Generowanie insertow SQL*/
