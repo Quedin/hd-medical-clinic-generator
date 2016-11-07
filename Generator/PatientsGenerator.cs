@@ -60,7 +60,14 @@ namespace Generator
         {
             List<Patient> list = new List<Patient>();
             for (int i = 0; i < numberOfPatients; i++)
+            {
                 list.Add(Generate());
+                if (i % 10000 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+                
 
             return list;
             

@@ -16,6 +16,7 @@ namespace Generator
        
         public Patient(Person p)
         {
+            PESEL = p.PESEL;
             Name = p.Name;
             Surname = p.Surname;
             //ulica

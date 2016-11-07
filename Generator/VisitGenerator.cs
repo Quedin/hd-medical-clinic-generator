@@ -40,7 +40,6 @@ namespace Generator
 
                 temp.Fee = rand.Next(80, 150);
 
-
                 list.Add(temp);
             }
 

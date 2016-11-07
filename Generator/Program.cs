@@ -46,13 +46,28 @@ namespace Generator
 
             /*listy sql*/
             List<DoctorSql> doctors_sql = DoctorSqlGenerator.Generate(doctors_T2);
+
+            /*ustawianie ilosci pacjentow TUTAJ*/
             List<Patient> patients_sql = pSQLg.GenerateListOfPatients(10000);
+
+
             List<Disease> diseases_sql = Disease.GenerateDiseases();
             List<Drugs> drugs_sql = Drugs.MakeDrugs();
-            List<Visit> visits_sql = vg.GenerateVisits(1000, doctors_sql, patients_sql, diseases_sql);
+
+            /*ustawianie ilosci wizyt TUTAJ*/
+            List<Visit> visits_sql = vg.GenerateVisits(1000000, doctors_sql, patients_sql, diseases_sql);
+
+
+            /*Generowanie insertow SQL*/
             List<Treatment> treatments_sql = tg.Generate(visits_sql, drugs_sql);
-            
-            
+            SqlGenerator.SqlFromDoctors(@"..\..\", doctors_sql);
+            SqlGenerator.SqlFromPatients(@"..\..\", patients_sql);
+            SqlGenerator.SqlFromDiseases(@"..\..\", diseases_sql);
+            SqlGenerator.SqlFromDrugs(@"..\..\", drugs_sql);
+            SqlGenerator.SqlFromVisits(@"..\..\", visits_sql);
+            SqlGenerator.SqlFromTreatments(@"..\..\", treatments_sql);
+
+
             //SaveDoctorToExcel(doctors_T1, "Lekarze_T1.xls");
             //SaveDoctorToExcel(doctors_T2, "Lekarze_T2.xls");
         }
