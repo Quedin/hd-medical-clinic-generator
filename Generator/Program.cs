@@ -55,6 +55,12 @@ namespace Generator
             /* Generowanie insertów SQL dla T2 */
             SqlGenerator.SqlFromDoctors_T2(@"..\..\", doctors_sql_T2);
 
+            /*moment T2 sql --> MICHU*/
+            List<Patient> patients_sql2 = pSQLg.PickFewPatients(100, patients_sql);
+            List<Visit> visits_sql2 = vg.GenerateVisits(10000, doctors_sql_T1, patients_sql2, diseases_sql);
+            SqlGenerator.SqlFromPatients(@"..\..\", patients_sql2);
+            SqlGenerator.SqlFromVisits(@"..\..\", visits_sql2);
+
 
             SaveDoctorToExcel(doctors_T1, "Lekarze_T1.xls");
             SaveDoctorToExcel(doctors_T2, "Lekarze_T2.xls");
