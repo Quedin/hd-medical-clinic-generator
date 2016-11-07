@@ -31,7 +31,13 @@ namespace Generator
                 temp.Disease = diseases[rand.Next(diseases.Count - 1)];
 
 
-                temp.RejestrationDate = temp.Doctor.DateOfEmployment.AddDays(rand.Next((endOfVisits - temp.Doctor.DateOfEmployment).Days));
+                if(temp.Doctor.DateOfDissmiss.Year == 1)
+                    temp.RejestrationDate = temp.Doctor.DateOfEmployment.AddDays(rand.Next((endOfVisits - temp.Doctor.DateOfEmployment).Days));
+                else
+                    temp.RejestrationDate = temp.Doctor.DateOfEmployment.AddDays(rand.Next((temp.Doctor.DateOfDissmiss - temp.Doctor.DateOfEmployment).Days));
+
+
+
                 temp.VisitDate = temp.RejestrationDate.AddDays(rand.Next(1, 7));
                 //dodanie czasu wizyty
                 //(mozna w sumie wrzucic to do VisitDate - ale dalem osobna propercje zeby to w miare odpowiadalo tabeli w sql - mozna zmienic :P

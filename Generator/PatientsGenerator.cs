@@ -73,5 +73,23 @@ namespace Generator
             
         }
 
+        public List<Patient> PickFewPatients(int howMany,List<Patient> listOriginal)
+        {
+            List<Patient> list = new List<Patient>();
+
+
+            for (int i = 0; i < howMany; i++)
+            {
+                int num = random.Next(listOriginal.Count - 1);
+                listOriginal[num].City = RandomCity();
+                listOriginal[num].Street = RandomStreet();
+                listOriginal[num].ZipCode = RandomZipCode();
+                list.Add(listOriginal[num]);
+
+            }
+
+            return list;
+        }
+
     }
 }

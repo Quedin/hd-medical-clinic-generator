@@ -14,7 +14,7 @@ namespace Generator
         {
             
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\test.txt", true))
+            using (StreamWriter outputFile = new StreamWriter(path + @"\JanuszMED_T1.sql", true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in doctors)
