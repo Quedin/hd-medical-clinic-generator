@@ -35,7 +35,6 @@ namespace Generator
             /*ustawianie ilosci pacjentow TUTAJ*/
             List<Patient> patients_sql = pSQLg.GenerateListOfPatients(100);
 
-
             List<Disease> diseases_sql = Disease.GenerateDiseases();
             List<Drugs> drugs_sql = Drugs.MakeDrugs();
 
@@ -45,21 +44,19 @@ namespace Generator
 
             /*Generowanie insertow SQL dla T1*/
             List<Treatment> treatments_sql = tg.Generate(visits_sql, drugs_sql);
-            SqlGenerator.SqlFromDoctors(@"..\..\", doctors_sql_T1);
-            SqlGenerator.SqlFromPatients(@"..\..\", patients_sql);
-            SqlGenerator.SqlFromDiseases(@"..\..\", diseases_sql);
-            SqlGenerator.SqlFromDrugs(@"..\..\", drugs_sql);
-            SqlGenerator.SqlFromVisits(@"..\..\", visits_sql);
-            SqlGenerator.SqlFromTreatments(@"..\..\", treatments_sql);
+            SqlGenerator.SqlFromDoctors(@"..\..\JanuszMED_T1.sql", doctors_sql_T1);
+            SqlGenerator.SqlFromPatients(@"..\..\JanuszMED_T1.sql", patients_sql);
+            SqlGenerator.SqlFromDiseases(@"..\..\JanuszMED_T1.sql", diseases_sql);
+            SqlGenerator.SqlFromDrugs(@"..\..\JanuszMED_T1.sql", drugs_sql);
+            SqlGenerator.SqlFromVisits(@"..\..\JanuszMED_T1.sql", visits_sql);
+            SqlGenerator.SqlFromTreatments(@"..\..\JanuszMED_T1.sql", treatments_sql);
 
             /* Generowanie insertów SQL dla T2 */
-            SqlGenerator.SqlFromDoctors_T2(@"..\..\", doctors_sql_T2);
-
-            /*moment T2 sql --> MICHU*/
+            SqlGenerator.SqlFromDoctors_T2(@"..\..\JanuszMED_T2.sql", doctors_sql_T2);
             List<Patient> patients_sql2 = pSQLg.PickFewPatients(100, patients_sql);
-            List<Visit> visits_sql2 = vg.GenerateVisits(10000, doctors_sql_T1, patients_sql2, diseases_sql);
-            SqlGenerator.SqlFromPatients(@"..\..\", patients_sql2);
-            SqlGenerator.SqlFromVisits(@"..\..\", visits_sql2);
+            List<Visit> visits_sql2 = vg.GenerateVisits(10000, doctors_sql_T2, patients_sql2, diseases_sql);
+            SqlGenerator.SqlFromPatients(@"..\..\JanuszMED_T2.sql", patients_sql2);
+            SqlGenerator.SqlFromVisits(@"..\..\JanuszMED_T2.sql", visits_sql2);
 
 
             SaveDoctorToExcel(doctors_T1, "Lekarze_T1.xls");
