@@ -1,9 +1,9 @@
-/*CREATE DATABASE JanuszMED
+CREATE DATABASE JanuszMED
 g
 
 use JanuszMED
 go
-*/
+
 CREATE TABLE Choroby(
 	IdChoroby varchar(20) PRIMARY KEY,
 	Nazwa varchar(50) NOT NULL,
