@@ -11,7 +11,7 @@ namespace Generator
         private Random rand;
         private DateTime startOfVisits = new DateTime(1994, 1, 1);
         private DateTime endOfVisits = new DateTime(2016, 1, 1);
-
+        private int visitCount = 0;
         public VisitGenerator(Random r)
         {
             rand = r;
@@ -24,7 +24,8 @@ namespace Generator
             for (int i = 0; i < numberOfvisits; i++)
             {
 
-                Visit temp = new Visit(i);
+                Visit temp = new Visit(visitCount);
+                visitCount++;
                 //połączenie wizyty z random lekarzem,doktorem,choroba na ktora zglosil sie pacjent do przychodni
                 temp.Doctor = doctors[rand.Next(doctors.Count - 1)];     //ogarnac czy to -1 musi byc, ale chyba jo
                 temp.Patient = patients[rand.Next(patients.Count - 1)];
