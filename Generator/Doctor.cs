@@ -31,6 +31,7 @@ namespace Generator
             Age = person.Age;
             PESEL = person.PESEL;
             Phone = person.Phone;
+            NewDoctor = true;
         }
         #endregion
 

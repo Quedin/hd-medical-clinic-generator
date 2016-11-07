@@ -22,6 +22,7 @@ namespace Generator
             Phone = d.Phone;
             DateOfEmployment = d.DateOfEmployment;
             DateOfDissmiss = d.DateOfDissmiss;
+            NewDoctor = d.NewDoctor;
         }
 
     }

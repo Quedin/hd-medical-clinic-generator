@@ -14,7 +14,7 @@ namespace Generator
         {
             
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\test.sql", true))
+            using (StreamWriter outputFile = new StreamWriter(path, true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in doctors)
@@ -34,21 +34,19 @@ namespace Generator
         {
 
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\JanuszMED_T2.sql", true))
+            using (StreamWriter outputFile = new StreamWriter(path, true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in doctors)
                 {
-                    if (!item.NewDoctor)
-                        continue;
-
-                    outputFile.WriteLine("insert into Lekarze (\"KodLekarza\",\"Imie\",\"Nazwisko\",\"Specjalizacja\",\"NrGabinetu\",\"NrKontaktowy\") values (\'" +
-                        item.DoctorsCode.ToString() + "\', \'" +
-                        item.Name + "\', \'" +
-                        item.Surname + "\', \'" +
-                        item.Specjalizations + "\', \'" +
-                        item.Cabinet.ToString() + "\',\'" +
-                        item.Phone.ToString() + "\');");
+                    if (item.NewDoctor)
+                        outputFile.WriteLine("insert into Lekarze (\"KodLekarza\",\"Imie\",\"Nazwisko\",\"Specjalizacja\",\"NrGabinetu\",\"NrKontaktowy\") values (\'" +
+                            item.DoctorsCode.ToString() + "\', \'" +
+                            item.Name + "\', \'" +
+                            item.Surname + "\', \'" +
+                            item.Specjalizations + "\', \'" +
+                            item.Cabinet.ToString() + "\',\'" +
+                            item.Phone.ToString() + "\');");
                 }
             }
         }
@@ -57,7 +55,7 @@ namespace Generator
         {
 
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\test.sql", true))
+            using (StreamWriter outputFile = new StreamWriter(path, true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in patients)
@@ -82,7 +80,7 @@ namespace Generator
         {
 
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\test.sql", true))
+            using (StreamWriter outputFile = new StreamWriter(path, true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in diseases)
@@ -99,7 +97,7 @@ namespace Generator
         {
 
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\test.sql", true))
+            using (StreamWriter outputFile = new StreamWriter(path, true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in drugs)
@@ -116,7 +114,7 @@ namespace Generator
         {
 
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\test.sql", true))
+            using (StreamWriter outputFile = new StreamWriter(path, true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in visits)
@@ -139,7 +137,7 @@ namespace Generator
         {
 
             // Append text to an existing file named "WriteLines.txt".
-            using (StreamWriter outputFile = new StreamWriter(path + @"\test.sql", true))
+            using (StreamWriter outputFile = new StreamWriter(path, true))
             {
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in treatments)
