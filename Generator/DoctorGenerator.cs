@@ -82,6 +82,8 @@ namespace Generator
         {
             // kopiowanie listy z punktu T1
             List<Doctor> list_T2 = list_T1.Select(doctor => (Doctor)doctor.Clone()).ToList();
+            // oznaczenie starych lekarzy
+            list_T2.ForEach(doctor => doctor.NewDoctor = false);
             // policzenie lekarzy, którzy pracują
             int working = list_T1.Where(doctor => doctor.DateOfDissmiss.Year == 1).Count();
             // wylosowanie ilości osób do zwolnienia (min: 2; max: liczba aktualnie pracujących)

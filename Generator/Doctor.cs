@@ -14,11 +14,14 @@ namespace Generator
         public string Specjalizations { get; set; }
         public DateTime DateOfEmployment { get; set; }
         public DateTime DateOfDissmiss { get; set; }
+        public bool NewDoctor { get; set; }
         #endregion
 
         #region KONSTRUKTOR
         public Doctor()
-        { }
+        {
+            NewDoctor = true;
+        }
 
         public Doctor(Person person)
         {
