@@ -30,6 +30,29 @@ namespace Generator
             }
         }
 
+        public static void SqlFromDoctors_T2(string path, List<DoctorSql> doctors)
+        {
+
+            // Append text to an existing file named "WriteLines.txt".
+            using (StreamWriter outputFile = new StreamWriter(path + @"\JanuszMED_T2.sql", true))
+            {
+                //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
+                foreach (var item in doctors)
+                {
+                    if (!item.NewDoctor)
+                        continue;
+
+                    outputFile.WriteLine("insert into Lekarze (\"KodLekarza\",\"Imie\",\"Nazwisko\",\"Specjalizacja\",\"NrGabinetu\",\"NrKontaktowy\") values (\'" +
+                        item.DoctorsCode.ToString() + "\', \'" +
+                        item.Name + "\', \'" +
+                        item.Surname + "\', \'" +
+                        item.Specjalizations + "\', \'" +
+                        item.Cabinet.ToString() + "\',\'" +
+                        item.Phone.ToString() + "\');");
+                }
+            }
+        }
+
         public static void SqlFromPatients(string path, List<Patient> patients)
         {
 

@@ -1,0 +1,17 @@
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10000', 'Bronisław', 'Zborało', 'Choroby zakaźne', '1','449793576');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10001', 'Amelia', 'Harasta', 'Epidemiologia', '2','535963230');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10002', 'Ignacy', 'Prenik', 'Choroby zakaźne', '3','527307265');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10003', 'Marcin', 'Bilcer', 'Medycyna transportu', '4','402392089');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10004', 'Angelika', 'Chętko', 'Neurochirurgia', '5','260662001');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10005', 'Seweryn', 'Kenona', 'Chirurgia ogólna', '6','271023549');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10006', 'Iga', 'Gertchen', 'Medycyna sądowa', '7','154918082');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10007', 'Gracjan', 'CzapigavelCapiga', 'Okulistyka', '8','439613708');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10008', 'Ines', 'Olichwierczuk', 'Pediatria', '8','332123446');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10009', 'Viktor', 'Weinar', 'Neurochirurgia', '9','677122791');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10010', 'Emily', 'Wielogórecki', 'Onkologia kliniczna', '9','605167516');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10011', 'Roch', 'Radleńska', 'Choroby wewnętrzne', '10','329261220');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10012', 'Bartosz', 'Szelendak', 'Kardiochirurgia', '11','625461711');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10013', 'Carmen', 'Morlo', 'Chirurgia klatki piersiowej', '12','422408332');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10014', 'Honorata', 'Bonrowicz', 'Radiologia i diagnostyka obrazowa', '13','605620521');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10015', 'Aneta', 'Żydlik', 'Ortopedia i traumatologia narządu ruchu', '14','755513694');
+insert into Lekarze ("KodLekarza","Imie","Nazwisko","Specjalizacja","NrGabinetu","NrKontaktowy") values ('10016', 'Nicola', 'Staruń', 'Psychiatria', '14','121428291');
