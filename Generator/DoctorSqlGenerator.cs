@@ -8,7 +8,6 @@ namespace Generator
 {
     static class DoctorSqlGenerator
     {
-
         public static List<DoctorSql> Generate(List<Doctor> l)
         {
             List<DoctorSql> thatList = new List<DoctorSql>();     
@@ -21,7 +20,5 @@ namespace Generator
 
             return thatList;
         }
-
-   
     }
 }

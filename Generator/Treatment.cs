@@ -11,7 +11,6 @@ namespace Generator
         public Visit Visit { get; set; }
         public Drugs Drug { get; set; }
 
-
         public Treatment(Visit v, Drugs d)
         {
             this.Visit = v;

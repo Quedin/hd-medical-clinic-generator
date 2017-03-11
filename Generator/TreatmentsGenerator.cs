@@ -33,7 +33,5 @@ namespace Generator
 
             return list;
         }
-
-
     }
 }

@@ -15,8 +15,6 @@ namespace Generator
 
         public static List<Disease>GenerateDiseases()
         {
-
-           
             List<Disease> list = new List<Disease>();
             for (int i = 0; i < ResourceManager.Diseases.Count(); i++)
             {
@@ -28,6 +26,5 @@ namespace Generator
 
             return list;
         }
-
     }
 }

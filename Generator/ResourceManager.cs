@@ -76,7 +76,7 @@ namespace Generator
             //foreach (string name in surnames)
             //    Console.WriteLine(name);
 
-                //Console.WriteLine("Liczba nazwisk: " + surnames.Count());
+            //Console.WriteLine("Liczba nazwisk: " + surnames.Count());
         }
 
         public static void LoadDoctorSpecializations(string path)
