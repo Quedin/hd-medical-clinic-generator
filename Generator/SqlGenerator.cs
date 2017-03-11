@@ -19,12 +19,14 @@ namespace Generator
                 //insert into Ksiazka ("Isbn", "Tytul", "Gatunek") values ('2-57-749-124686-7', 'Heart in the Waves', 'informatyka');
                 foreach (var item in doctors)
                 {
-                    outputFile.WriteLine("insert into Lekarze (\"KodLekarza\",\"Imie\",\"Nazwisko\",\"Specjalizacja\",\"NrGabinetu\",\"NrKontaktowy\") values (\'" +
+                    int floor = item.Cabinet / 4;
+                    outputFile.WriteLine("insert into Lekarze (\"KodLekarza\",\"Imie\",\"Nazwisko\",\"Specjalizacja\",\"NrGabinetu\",\"NrPietra\",\"NrKontaktowy\") values (\'" +
                         item.DoctorsCode.ToString() + "\', \'" +
                         item.Name + "\', \'"+
                         item.Surname+"\', \'"+
                         item.Specjalizations+"\', \'"+
                         item.Cabinet.ToString()+"\',\'"+
+                        floor.ToString() + "\',\'" +
                         item.Phone.ToString()+"\');");
                 }
             }
@@ -40,13 +42,17 @@ namespace Generator
                 foreach (var item in doctors)
                 {
                     if (item.NewDoctor)
-                        outputFile.WriteLine("insert into Lekarze (\"KodLekarza\",\"Imie\",\"Nazwisko\",\"Specjalizacja\",\"NrGabinetu\",\"NrKontaktowy\") values (\'" +
+                    {
+                        int floor = item.Cabinet / 4;
+                        outputFile.WriteLine("insert into Lekarze (\"KodLekarza\",\"Imie\",\"Nazwisko\",\"Specjalizacja\",\"NrGabinetu\",\"NrPietra\",\"NrKontaktowy\") values (\'" +
                             item.DoctorsCode.ToString() + "\', \'" +
                             item.Name + "\', \'" +
                             item.Surname + "\', \'" +
                             item.Specjalizations + "\', \'" +
                             item.Cabinet.ToString() + "\',\'" +
+                            floor.ToString() + "\',\'" +
                             item.Phone.ToString() + "\');");
+                    }
                 }
             }
         }
