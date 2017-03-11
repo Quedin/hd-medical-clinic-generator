@@ -17,15 +17,10 @@ namespace Generator
         public Patient Patient { get; set; }
         public Disease Disease { get; set; }
 
-        
-        
-
         public Visit() { }
         public Visit(int i)
         {
             this.Id = i;
-
-
         }
 
 
